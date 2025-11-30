@@ -5,6 +5,7 @@ import { Syllabus } from './components/Syllabus';
 import { Instructor } from './components/Instructor';
 import { Pricing } from './components/Pricing';
 import { Faq } from './components/Faq';
+import { Secretary } from './components/Secretary';
 import { Footer } from './components/Footer';
 import { GeminiChat } from './components/GeminiChat';
 import { Registration } from './components/Registration';
@@ -39,6 +40,7 @@ function App() {
             <Instructor />
             <Syllabus />
             <Pricing onPlanSelect={handlePlanSelect} />
+            <Secretary />
             <Faq />
           </>
         ) : (
