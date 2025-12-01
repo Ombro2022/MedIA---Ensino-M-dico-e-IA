@@ -64,14 +64,14 @@ export const Instructor: React.FC = () => {
           {/* Column 2: Content */}
           <div className="w-full lg:w-2/3">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">
-              A autoridade de quem define os rumos da <br />
+              A autoridade de quem participa e ajuda a definir os rumos da <br />
               <span className={GRADIENT_TEXT_CLASS}>Medicina Intensiva</span> no Brasil.
             </h2>
             
             <p className="text-slate-600 text-lg mb-8 leading-relaxed">
-              Médico com formação consolidada em <strong>Cardiologia e Medicina Intensiva</strong>, foi Diretor Presidente da AMIB (2018-2019) e integra o Conselho Consultivo da associação. 
+              Médico com formação consolidada em <strong>Medicina Intensiva e Cardiologia</strong>, foi Diretor Presidente da AMIB (2018-2019) e integra o Conselho Consultivo da associação. 
               <br /><br />
-              Atualmente, exerce a <strong>Presidência da Comissão do Título de Especialista da AMIB</strong> (reconduzido para os biênios 2024-2027), cargo chave na certificação da qualidade médica no país. Mestre em Medicina, une vasta experiência em gestão de UTIs e formação de residentes com a inovação em saúde digital, atuando também como Instrutor do Curso de Inteligência Artificial da AMIB e desenvolvedor de aplicativos para protocolos clínicos.
+              Atualmente, exerce a <strong>Presidência da Comissão do Título de Especialista da AMIB</strong> (reconduzido para os biênios 2024-2027), cargo chave na certificação em Medicina Intensiva no país. Mestre em Medicina, une uma vasta experiência como educador médico na graduação e como preceptor de residência com o grande conhecimento e entusiasmo por inovação em saúde digital, atuando também como Instrutor do Curso de Inteligência Artificial da AMIB e, como hobby, também desenvolve aplicativos para protocolos clínicos e outras finalidades.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -101,7 +101,7 @@ export const Instructor: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-slate-900 font-bold mb-1">Expertise Técnica</h4>
-                  <p className="text-slate-500 text-sm">Palestrante internacional em Ultrassonografia, Hemodinâmica e Choque Circulatório.</p>
+                  <p className="text-slate-500 text-sm">Palestrante internacional em Ultrassonografia, Hemodinâmica e Choque Circulatório, além de editor de diversos livros e autor de inúmeros capítulos.</p>
                 </div>
               </div>
 
@@ -111,7 +111,7 @@ export const Instructor: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-slate-900 font-bold mb-1">Mestre e Mentor</h4>
-                  <p className="text-slate-500 text-sm">Chefe de diversas UTIs e formador de gerações de residentes em João Pessoa (PB).</p>
+                  <p className="text-slate-500 text-sm">Atuou como chefe de diversas UTIs e formador de gerações de residentes em João Pessoa (PB).</p>
                 </div>
               </div>
             </div>
