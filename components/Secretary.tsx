@@ -17,7 +17,7 @@ export const Secretary: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
-            Fale com nossa <span className={GRADIENT_TEXT_CLASS}>Secretaria</span>
+            Fale com nosso <span className={GRADIENT_TEXT_CLASS}>Secretário</span>
           </h2>
           <p className="text-slate-600 text-lg max-w-2xl mx-auto">
             Tire suas dúvidas e receba atendimento personalizado com nosso secretário
