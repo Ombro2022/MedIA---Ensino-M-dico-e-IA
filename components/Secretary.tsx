@@ -37,7 +37,7 @@ export const Secretary: React.FC = () => {
                       <img 
                         src="/Sisleudo.png" 
                         alt="Sisleudo Cândido - Secretário" 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain bg-white"
                         onError={() => setImageError(true)}
                       />
                     ) : (
