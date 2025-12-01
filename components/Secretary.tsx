@@ -35,7 +35,7 @@ export const Secretary: React.FC = () => {
                   <div className="aspect-square rounded-3xl overflow-hidden border-4 border-white shadow-2xl">
                     {!imageError ? (
                       <img 
-                        src="/Siileudo.jpg" 
+                        src="/Sisleudo.png" 
                         alt="Sisleudo Cândido - Secretário" 
                         className="w-full h-full object-cover"
                         onError={() => setImageError(true)}
