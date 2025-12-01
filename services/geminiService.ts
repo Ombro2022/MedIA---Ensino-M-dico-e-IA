@@ -22,11 +22,11 @@ Syllabus: ${JSON.stringify(COURSE_MODULES)}
 Atividades Extras: ${JSON.stringify(TRANSVERSAL_ACTIVITIES)}
 
 PREÇOS (POR MÓDULO DE 40h):
-- Estudante: R$ 1.200 (Módulo) + R$ 150 (Matrícula) = R$ 1.350 Total.
-- Residente: R$ 1.400 (Módulo) + R$ 150 (Matrícula) = R$ 1.550 Total.
-- Médico Sênior: R$ 1.700 (Módulo) + R$ 150 (Matrícula) = R$ 1.850 Total.
-- Material Impresso (Opcional): + R$ 250 por módulo.
-- Parcelamento: Até 3x sem juros (no cartão).
+- Estudante: R$ 1.380 (Módulo) + R$ 172,50 (Matrícula) = R$ 1.552,50 Total.
+- Residente: R$ 1.610 (Módulo) + R$ 172,50 (Matrícula) = R$ 1.782,50 Total.
+- Médico Sênior: R$ 1.955 (Módulo) + R$ 172,50 (Matrícula) = R$ 2.127,50 Total.
+- Material Impresso (Opcional): + R$ 287,50 por módulo.
+- Parcelamento: Até 6x sem juros (no cartão).
 
 DIRETRIZES DE RESPOSTA:
 1. Se perguntarem "O que vou aprender?", liste os tópicos médicos (Arritmias, Gasometria, Choque) E os tópicos de IA (Prompting, Validação de Alucinações).

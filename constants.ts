@@ -71,15 +71,15 @@ export const PRICING_TIERS: PricingTier[] = [
     id: "student",
     name: "Estudante de Medicina",
     audience: "Graduandos",
-    modulePrice: 1200,
-    registrationFee: 150,
-    printFee: 250,
+    modulePrice: 1380,
+    registrationFee: 172.50,
+    printFee: 287.50,
     features: [
       "Acesso Digital ao Módulo (40h)",
       "Material Digital (PDFs e Slides)",
       "Participação no Hackathon",
       "Certificado Digital",
-      "Parcelamento em até 3x sem juros"
+      "Parcelamento em até 6x sem juros"
     ],
     color: "mediaBlue"
   },
@@ -87,9 +87,9 @@ export const PRICING_TIERS: PricingTier[] = [
     id: "resident",
     name: "Médico Residente",
     audience: "R1 - R+ e Pós-Graduandos",
-    modulePrice: 1400,
-    registrationFee: 150,
-    printFee: 250,
+    modulePrice: 1610,
+    registrationFee: 172.50,
+    printFee: 287.50,
     recommended: true,
     features: [
       "Acesso Digital ao Módulo (40h)",
@@ -104,9 +104,9 @@ export const PRICING_TIERS: PricingTier[] = [
     id: "senior",
     name: "Médico Sênior",
     audience: "Especialistas e Preceptores",
-    modulePrice: 1700,
-    registrationFee: 150,
-    printFee: 250,
+    modulePrice: 1955,
+    registrationFee: 172.50,
+    printFee: 287.50,
     features: [
       "Acesso Digital ao Módulo (40h)",
       "Material Digital (PDFs e Slides)",

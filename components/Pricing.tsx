@@ -25,7 +25,7 @@ export const Pricing: React.FC<PricingProps> = ({ onPlanSelect }) => {
           </h2>
           <p className="text-slate-500 max-w-2xl mx-auto">
             Valores referentes a um módulo (ECG ou Gasometria). <br/>
-            Parcelamento em até <strong>3x sem juros</strong> no cartão.
+            Parcelamento em até <strong>6x sem juros</strong> no cartão.
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export const Pricing: React.FC<PricingProps> = ({ onPlanSelect }) => {
             const totalBase = tier.modulePrice + tier.registrationFee;
             const extra = includePrinted ? tier.printFee : 0;
             const finalTotal = totalBase + extra;
-            const installmentValue = finalTotal / 3;
+            const installmentValue = finalTotal / 6;
 
             return (
               <div 
@@ -88,7 +88,7 @@ export const Pricing: React.FC<PricingProps> = ({ onPlanSelect }) => {
                   {/* Price Display */}
                   <div className="flex flex-col gap-1 mb-2">
                     <span className={`text-4xl font-extrabold ${isRecommended ? 'text-mediaPurple' : 'text-slate-900'}`}>
-                       3x {formatCurrency(installmentValue)}
+                       6x {formatCurrency(installmentValue)}
                     </span>
                     <span className={`text-sm font-medium ${isRecommended ? 'text-slate-400' : 'text-slate-500'}`}>
                       Total à vista: {formatCurrency(finalTotal)}
@@ -155,7 +155,7 @@ export const Pricing: React.FC<PricingProps> = ({ onPlanSelect }) => {
         
         <div className="mt-12 text-center">
             <p className="text-xs text-slate-400">
-              *Valores incluem taxa de matrícula única por módulo. O parcelamento em até 3x é sem juros.
+              *Valores incluem taxa de matrícula única por módulo. O parcelamento em até 6x é sem juros.
             </p>
         </div>
       </div>
