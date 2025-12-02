@@ -68,25 +68,9 @@ export const TRANSVERSAL_ACTIVITIES: TransversalActivity[] = [
 
 export const PRICING_TIERS: PricingTier[] = [
   {
-    id: "student",
-    name: "Estudante de Medicina",
-    audience: "Graduandos",
-    modulePrice: 1380,
-    registrationFee: 172.50,
-    printFee: 287.50,
-    features: [
-      "Acesso Digital ao Módulo (40h)",
-      "Material Digital (PDFs e Slides)",
-      "Participação no Hackathon",
-      "Certificado Digital",
-      "Parcelamento em até 6x sem juros"
-    ],
-    color: "mediaBlue"
-  },
-  {
-    id: "resident",
-    name: "Médico Residente",
-    audience: "R1 - R+ e Pós-Graduandos",
+    id: "unified",
+    name: "Valor do Investimento",
+    audience: "Módulo (40h)",
     modulePrice: 1610,
     registrationFee: 172.50,
     printFee: 287.50,
@@ -96,25 +80,10 @@ export const PRICING_TIERS: PricingTier[] = [
       "Material Digital (PDFs e Slides)",
       "Participação no Hackathon",
       "Certificado Digital",
-      "Mentoria de Carreira (Grupo)"
+      "Mentoria de Carreira (Grupo)",
+      "Parcelamento em até 6x sem juros"
     ],
     color: "mediaPurple"
-  },
-  {
-    id: "senior",
-    name: "Médico Sênior",
-    audience: "Especialistas e Preceptores",
-    modulePrice: 1955,
-    registrationFee: 172.50,
-    printFee: 287.50,
-    features: [
-      "Acesso Digital ao Módulo (40h)",
-      "Material Digital (PDFs e Slides)",
-      "Acesso VIP aos eventos presenciais",
-      "Networking Exclusivo",
-      "Sessão de Tira-Dúvidas Prioritária"
-    ],
-    color: "mediaPink"
   }
 ];
 

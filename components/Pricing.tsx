@@ -52,7 +52,7 @@ export const Pricing: React.FC<PricingProps> = ({ onPlanSelect }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+        <div className="flex justify-center max-w-6xl mx-auto">
           {PRICING_TIERS.map((tier, index) => {
             const isRecommended = tier.recommended;
             
@@ -65,39 +65,33 @@ export const Pricing: React.FC<PricingProps> = ({ onPlanSelect }) => {
             return (
               <div 
                 key={index}
-                className={`relative p-8 rounded-3xl transition-all duration-300 flex flex-col h-full
-                  ${isRecommended 
-                    ? 'bg-slate-900 border-2 border-mediaPurple shadow-2xl shadow-purple-200 scale-105 z-20 text-white' 
-                    : 'bg-white border border-slate-200 hover:border-mediaBlue/50 hover:shadow-xl hover:shadow-slate-100 z-10 text-slate-900'
-                  }
-                `}
+                className="relative p-8 rounded-3xl transition-all duration-300 flex flex-col w-full max-w-md
+                  bg-slate-900 border-2 border-mediaPurple shadow-2xl shadow-purple-200 text-white"
               >
-                {isRecommended && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-mediaPurple to-mediaPink text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1 shadow-lg">
-                    <Zap className="w-3 h-3 fill-current" />
-                    Mais Escolhido
-                  </div>
-                )}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-mediaPurple to-mediaPink text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1 shadow-lg">
+                  <Zap className="w-3 h-3 fill-current" />
+                  Investimento Único
+                </div>
 
                 <div className="mb-6">
-                  <h3 className={`text-xl font-bold mb-2 ${isRecommended ? 'text-white' : 'text-slate-900'}`}>
+                  <h3 className="text-xl font-bold mb-2 text-white">
                     {tier.name}
                   </h3>
-                  <p className={`text-sm mb-6 ${isRecommended ? 'text-slate-400' : 'text-slate-500'}`}>{tier.audience}</p>
+                  <p className="text-sm mb-6 text-slate-400">{tier.audience}</p>
                   
                   {/* Price Display */}
                   <div className="flex flex-col gap-1 mb-2">
-                    <span className={`text-4xl font-extrabold ${isRecommended ? 'text-mediaPurple' : 'text-slate-900'}`}>
+                    <span className="text-4xl font-extrabold text-mediaPurple">
                        6x {formatCurrency(installmentValue)}
                     </span>
-                    <span className={`text-sm font-medium ${isRecommended ? 'text-slate-400' : 'text-slate-500'}`}>
+                    <span className="text-sm font-medium text-slate-400">
                       Total à vista: {formatCurrency(finalTotal)}
                     </span>
                   </div>
                 </div>
 
                 {/* Breakdown */}
-                <div className={`mb-6 p-4 rounded-xl text-xs font-mono space-y-1 ${isRecommended ? 'bg-slate-800 text-slate-300' : 'bg-slate-50 text-slate-600'}`}>
+                <div className="mb-6 p-4 rounded-xl text-xs font-mono space-y-1 bg-slate-800 text-slate-300">
                     <div className="flex justify-between">
                         <span>Módulo Digital:</span>
                         <span>{formatCurrency(tier.modulePrice)}</span>
@@ -120,16 +114,16 @@ export const Pricing: React.FC<PricingProps> = ({ onPlanSelect }) => {
 
                 <ul className="space-y-4 mb-8 flex-grow">
                   {tier.features.map((feature, fIdx) => (
-                    <li key={fIdx} className={`flex items-start gap-3 text-sm ${isRecommended ? 'text-slate-300' : 'text-slate-600'}`}>
-                      <div className={`mt-0.5 p-0.5 rounded-full ${isRecommended ? 'bg-mediaPurple/20 text-mediaPurple' : 'bg-slate-100 text-slate-600'}`}>
+                    <li key={fIdx} className="flex items-start gap-3 text-sm text-slate-300">
+                      <div className="mt-0.5 p-0.5 rounded-full bg-mediaPurple/20 text-mediaPurple">
                         <Check className="w-3 h-3" />
                       </div>
                       {feature}
                     </li>
                   ))}
                    {includePrinted && (
-                    <li className={`flex items-start gap-3 text-sm font-bold ${isRecommended ? 'text-mediaPink' : 'text-mediaPurple'}`}>
-                      <div className={`mt-0.5 p-0.5 rounded-full ${isRecommended ? 'bg-mediaPink/20 text-mediaPink' : 'bg-purple-100 text-mediaPurple'}`}>
+                    <li className="flex items-start gap-3 text-sm font-bold text-mediaPink">
+                      <div className="mt-0.5 p-0.5 rounded-full bg-mediaPink/20 text-mediaPink">
                         <BookOpen className="w-3 h-3" />
                       </div>
                       Apostila Impressa Inclusa
@@ -139,12 +133,8 @@ export const Pricing: React.FC<PricingProps> = ({ onPlanSelect }) => {
 
                 <button 
                   onClick={() => onPlanSelect({ tier, includePrinted })}
-                  className={`w-full py-4 rounded-xl font-bold text-sm transition-all duration-300
-                    ${isRecommended 
-                      ? 'bg-gradient-to-r from-mediaPurple to-mediaPink text-white hover:opacity-90 shadow-lg' 
-                      : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
-                    }
-                  `}
+                  className="w-full py-4 rounded-xl font-bold text-sm transition-all duration-300
+                    bg-gradient-to-r from-mediaPurple to-mediaPink text-white hover:opacity-90 shadow-lg"
                 >
                   Matricular Agora
                 </button>
