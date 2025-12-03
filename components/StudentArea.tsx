@@ -63,7 +63,7 @@ export const StudentArea: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden">
+    <section id="area-aluno" className="py-24 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute right-0 top-1/4 w-96 h-96 bg-mediaPurple/5 rounded-full blur-3xl -z-10"></div>
       <div className="absolute left-0 bottom-1/4 w-96 h-96 bg-mediaBlue/5 rounded-full blur-3xl -z-10"></div>

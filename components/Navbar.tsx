@@ -32,6 +32,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, currentView }) => {
   const navLinks = [
     { label: 'Ementa', target: 'syllabus' },
     { label: 'Investimento', target: 'pricing' },
+    { label: 'Contato', target: 'contato' },
+    { label: 'Área do Aluno', target: 'area-aluno' },
     { label: 'FAQ', target: 'faq' },
   ];
 
