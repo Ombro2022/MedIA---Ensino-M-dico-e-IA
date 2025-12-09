@@ -102,6 +102,6 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     question: "Serve para provas de Residência?",
-    answer: "Com certeza. Os módulos cobrem temas fundamentais de provas: leitura sistemática de ECG, arritmias, distúrbios mistos na gasometria e ventilação mecânica. A IA atua gerando questões infinitas para você treinar."
+    answer: "Com certeza. Os módulos cobrem temas fundamentais de provas: leitura sistemática de ECG, arritmias, distúrbios mistos na gasometria e ventilação mecânica."
   }
 ];

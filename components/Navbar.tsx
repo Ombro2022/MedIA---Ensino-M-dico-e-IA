@@ -4,10 +4,11 @@ import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   onHomeClick: () => void;
-  currentView: 'home' | 'register';
+  onAccessPortal: () => void;
+  currentView: 'home' | 'register' | 'portal';
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, currentView }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onAccessPortal, currentView }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -50,11 +51,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, currentView }) => {
         if(el) el.scrollIntoView({behavior: 'smooth'});
       }
       setMobileMenuOpen(false);
-  }
+  };
+
+  const handlePortalAccess = () => {
+    setMobileMenuOpen(false);
+    onAccessPortal();
+  };
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || currentView === 'register' ? 'bg-white/80 backdrop-blur-md py-4 shadow-sm border-b border-slate-100' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || currentView !== 'home' ? 'bg-white/80 backdrop-blur-md py-4 shadow-sm border-b border-slate-100' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center relative z-50">
           <div onClick={onHomeClick} className="cursor-pointer">
             <Logo />
@@ -72,6 +78,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, currentView }) => {
                   {link.label}
                 </button>
               ))}
+              <button
+                onClick={handlePortalAccess}
+                className="px-5 py-2 border border-slate-200 text-slate-700 rounded-full text-sm font-bold hover:border-slate-900 hover:text-slate-900 transition-all"
+              >
+                Área do Aluno
+              </button>
               <button onClick={() => handleScrollTo('pricing')} className="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg">
                 Inscreva-se
               </button>
@@ -81,6 +93,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, currentView }) => {
           {currentView === 'register' && (
             <button onClick={onHomeClick} className="hidden md:block text-sm font-bold text-slate-500 hover:text-slate-900">
               Cancelar Inscrição
+            </button>
+          )}
+
+          {currentView === 'portal' && (
+            <button onClick={onHomeClick} className="hidden md:block text-sm font-bold text-slate-500 hover:text-slate-900">
+              Voltar ao site
             </button>
           )}
 
@@ -117,6 +135,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, currentView }) => {
                   {link.label}
                 </button>
               ))}
+
+            {currentView === 'home' && (
+              <button 
+                onClick={handlePortalAccess}
+                className="text-left text-xl font-semibold text-slate-900 py-4"
+              >
+                Entrar na Área do Aluno
+              </button>
+            )}
            </div>
             
             {currentView === 'home' && (

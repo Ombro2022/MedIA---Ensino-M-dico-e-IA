@@ -31,28 +31,37 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleAccessPortal = () => {
+    setCurrentView('portal');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-mediaPink selection:text-white">
-      <Navbar onHomeClick={handleBackToHome} currentView={currentView} />
+      <Navbar onHomeClick={handleBackToHome} onAccessPortal={handleAccessPortal} currentView={currentView} />
       
       <main>
-        {currentView === 'home' ? (
+        {currentView === 'home' && (
           <>
             <Hero />
             <Instructor />
             <Syllabus />
             <Pricing onPlanSelect={handlePlanSelect} />
             <Secretary />
-            <StudentArea />
+            <StudentArea onAccessPortal={handleAccessPortal} />
             <Faq />
           </>
-        ) : (
-          selectedPlan && (
-            <Registration 
-              selectedPlan={selectedPlan} 
-              onBack={handleBackToHome} 
-            />
-          )
+        )}
+
+        {currentView === 'register' && selectedPlan && (
+          <Registration 
+            selectedPlan={selectedPlan} 
+            onBack={handleBackToHome} 
+          />
+        )}
+
+        {currentView === 'portal' && (
+          <StudentPortal onBack={handleBackToHome} />
         )}
       </main>
 
