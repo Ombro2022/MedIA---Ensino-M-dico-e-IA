@@ -18,3 +18,11 @@ View your app in AI Studio: https://ai.studio/apps/drive/1v5gCmhcTOhCFDMTBHnTrZe
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Social Studio (Admins)
+
+O módulo privado de posts requer o backend Express + SQLite localizado em `server/`.
+
+1. Configure o backend seguindo [`SOCIAL_MODULE_SETUP.md`](./SOCIAL_MODULE_SETUP.md) (variáveis, seed de admins e execução `npm run dev`).
+2. Defina `VITE_SOCIAL_API_URL` apontando para o endpoint local (ex.: `http://localhost:4000`).
+3. Acesse `/#/social` (ou pressione `Ctrl/Cmd + Shift + M`) e faça login com as credenciais cadastradas.

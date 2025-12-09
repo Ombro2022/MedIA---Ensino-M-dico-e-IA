@@ -5,10 +5,12 @@ import { Menu, X } from 'lucide-react';
 interface NavbarProps {
   onHomeClick: () => void;
   onAccessPortal: () => void;
-  currentView: 'home' | 'register' | 'portal';
+  onAccessSocial: () => void;
+  onLogoutStaff: () => void;
+  currentView: 'home' | 'register' | 'portal' | 'social-gate' | 'social-studio';
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onAccessPortal, currentView }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onAccessPortal, onAccessSocial, onLogoutStaff, currentView }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -29,6 +31,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onAccessPortal, cur
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleSecretShortcut = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key.toLowerCase() === 'm') {
+        event.preventDefault();
+        onAccessSocial();
+      }
+    };
+
+    window.addEventListener('keydown', handleSecretShortcut);
+    return () => window.removeEventListener('keydown', handleSecretShortcut);
+  }, [onAccessSocial]);
 
   const navLinks = [
     { label: 'Ementa', target: 'syllabus' },
@@ -58,16 +72,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onAccessPortal, cur
     onAccessPortal();
   };
 
+  const isHome = currentView === 'home';
+  const isRegister = currentView === 'register';
+  const isPortal = currentView === 'portal';
+  const isStaffArea = currentView === 'social-gate' || currentView === 'social-studio';
+
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || currentView !== 'home' ? 'bg-white/80 backdrop-blur-md py-4 shadow-sm border-b border-slate-100' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || !isHome ? 'bg-white/80 backdrop-blur-md py-4 shadow-sm border-b border-slate-100' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center relative z-50">
           <div onClick={onHomeClick} className="cursor-pointer">
             <Logo />
           </div>
           
           {/* Desktop Menu */}
-          {currentView === 'home' && (
+          {isHome && (
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
                 <button 
@@ -90,15 +109,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onAccessPortal, cur
             </div>
           )}
 
-          {currentView === 'register' && (
+          {isRegister && (
             <button onClick={onHomeClick} className="hidden md:block text-sm font-bold text-slate-500 hover:text-slate-900">
               Cancelar Inscrição
             </button>
           )}
 
-          {currentView === 'portal' && (
+          {isPortal && (
             <button onClick={onHomeClick} className="hidden md:block text-sm font-bold text-slate-500 hover:text-slate-900">
               Voltar ao site
+            </button>
+          )}
+
+          {isStaffArea && (
+            <button onClick={onLogoutStaff} className="hidden md:block text-sm font-bold text-slate-500 hover:text-slate-900">
+              Sair da Área Staff
             </button>
           )}
 
@@ -126,7 +151,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onAccessPortal, cur
             >
               Início
             </button>
-            {currentView === 'home' && navLinks.map((link) => (
+            {isHome && navLinks.map((link) => (
                 <button 
                     key={link.target} 
                     onClick={() => handleScrollTo(link.target)}
@@ -136,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onAccessPortal, cur
                 </button>
               ))}
 
-            {currentView === 'home' && (
+            {isHome && (
               <button 
                 onClick={handlePortalAccess}
                 className="text-left text-xl font-semibold text-slate-900 py-4"
@@ -146,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onAccessPortal, cur
             )}
            </div>
             
-            {currentView === 'home' && (
+            {isHome && (
               <button onClick={() => handleScrollTo('pricing')} className="w-full mt-8 py-4 bg-slate-900 text-white font-bold rounded-xl shadow-lg hover:bg-slate-800 transition-colors">
                 Inscreva-se Agora
               </button>

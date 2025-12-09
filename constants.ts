@@ -105,3 +105,12 @@ export const FAQ_ITEMS: FaqItem[] = [
     answer: "Com certeza. Os módulos cobrem temas fundamentais de provas: leitura sistemática de ECG, arritmias, distúrbios mistos na gasometria e ventilação mecânica."
   }
 ];
+
+export const SOCIAL_STORAGE_KEYS = {
+  posts: 'mediaSocialPosts',
+  assets: 'mediaSocialAssets'
+};
+
+export const SOCIAL_API_BASE_URL = import.meta.env.VITE_SOCIAL_API_URL || 'http://localhost:4000';
+export const SOCIAL_AUTH_STORAGE_KEY = 'mediaSocialAuthToken';
+
