@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Users, Mail, Phone, BookOpen, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Users, Mail, Phone, BookOpen, Send, CheckCircle, AlertCircle, Shield } from 'lucide-react';
 import { GRADIENT_TEXT_CLASS } from '../constants';
 
-export const StudentArea: React.FC = () => {
+type StudentAreaProps = {
+  onAccessPortal?: () => void;
+};
+
+export const StudentArea: React.FC<StudentAreaProps> = ({ onAccessPortal }) => {
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -79,8 +83,21 @@ export const StudentArea: React.FC = () => {
             Mantenha-se <span className={GRADIENT_TEXT_CLASS}>Conectado</span>
           </h2>
           <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-            Cadastre-se para receber comunicados importantes, materiais de apoio, lembretes de atividades e atualizações exclusivas sobre o curso.
+            O acesso à nova Área do Aluno é liberado somente para quem confirma o cadastro oficial. É por lá que enviamos comunicados, liberamos materiais premium e organizamos as mentorias.
           </p>
+          <div className="mt-6 inline-flex items-start gap-4 text-left bg-white border border-slate-200 rounded-2xl px-6 py-5 shadow-sm max-w-3xl">
+            <div className="w-12 h-12 rounded-2xl bg-mediaPurple/10 flex items-center justify-center text-mediaPurple">
+              <Shield className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="text-slate-700 font-semibold">Por que confirmar seus dados?</p>
+              <ul className="text-sm text-slate-500 mt-2 space-y-1">
+                <li>• Validamos quem faz parte da turma antes de liberar os vídeos e materiais.</li>
+                <li>• Enviamos lembretes personalizados sobre aulas, desafios e mentorias.</li>
+                <li>• Garantimos que o chat virtual continue seguro e focado.</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         {/* Content */}
@@ -279,6 +296,17 @@ export const StudentArea: React.FC = () => {
                     * Campos obrigatórios
                   </p>
                 </form>
+                <div className="mt-8 text-center">
+                  <p className="text-slate-500 text-sm mb-3">Já confirmou seu cadastro e quer acessar os conteúdos exclusivos?</p>
+                  <button
+                    type="button"
+                    disabled={!onAccessPortal}
+                    onClick={() => onAccessPortal && onAccessPortal()}
+                    className="px-6 py-3 rounded-full border border-slate-200 text-slate-700 font-semibold hover:border-mediaPurple hover:text-mediaPurple transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {onAccessPortal ? 'Ir para a Área do Aluno' : 'Acesso liberado após cadastro'}
+                  </button>
+                </div>
               </div>
             </div>
           </div>

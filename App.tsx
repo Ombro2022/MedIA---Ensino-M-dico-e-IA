@@ -7,12 +7,13 @@ import { Pricing } from './components/Pricing';
 import { Faq } from './components/Faq';
 import { Secretary } from './components/Secretary';
 import { StudentArea } from './components/StudentArea';
+import { StudentPortal } from './components/StudentPortal';
 import { Footer } from './components/Footer';
 import { GeminiChat } from './components/GeminiChat';
 import { Registration } from './components/Registration';
 import { SelectedPlan } from './types';
 
-type ViewState = 'home' | 'register';
+type ViewState = 'home' | 'register' | 'portal';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('home');

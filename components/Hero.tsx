@@ -28,8 +28,8 @@ export const Hero: React.FC = () => {
         </h1>
 
         <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed">
-          Uma metodologia <strong>inédita</strong>. Não é apenas um curso de tecnologia, mas uma imersão onde revisitamos temas cruciais da 
-          <strong> Urgência e Terapia Intensiva</strong> usando a Inteligência Artificial como ferramenta de ensino e potencializadora do raciocínio clínico.
+          Uma metodologia <strong>inédita</strong>. Não é apenas um curso de tecnologia, mas uma imersão na qual revisitamos temas cruciais em 
+          <strong> Urgências e Terapia Intensiva</strong> usando a Inteligência Artificial como ferramenta de ensino e potencializadora do raciocínio clínico.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
