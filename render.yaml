@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: media-social-backend
+    env: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MEDIA_SOCIAL_JWT_SECRET
+        sync: false
+      - key: MEDIA_SOCIAL_SETUP_KEY
+        sync: false
+      - key: MEDIA_SOCIAL_ALLOWED_ORIGINS
+        sync: false
