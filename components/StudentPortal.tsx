@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ArrowLeft,
   PlayCircle,
@@ -10,7 +10,9 @@ import {
   MessageSquare,
   Send,
   Paperclip,
-  ShieldCheck
+  ShieldCheck,
+  MoreVertical,
+  Trash2
 } from 'lucide-react';
 
 interface StudentPortalProps {
@@ -19,6 +21,7 @@ interface StudentPortalProps {
 }
 
 interface PortalVideo {
+  id: string;
   title: string;
   description: string;
   duration: string;
@@ -43,6 +46,7 @@ interface ChatMessage {
 
 const initialVideos: PortalVideo[] = [
   {
+    id: '1',
     title: 'Revisão de ECG – Aula 03',
     description: 'Discussão completa sobre ritmos rápidos e como usar a IA para detectar padrões ocultos.',
     duration: '32 min',
@@ -50,6 +54,7 @@ const initialVideos: PortalVideo[] = [
     tags: ['ECG', 'IA', 'Ritmos']
   },
   {
+    id: '2',
     title: 'Gasometria Aplicada na UTI',
     description: 'Casos reais integrando ventilação mecânica + gaso + suporte hemodinâmico.',
     duration: '28 min',
@@ -100,10 +105,27 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({ onBack, onAccessSi
   const [videos, setVideos] = useState(initialVideos);
   const [materials, setMaterials] = useState(initialMaterials);
   const [newVideo, setNewVideo] = useState({ title: '', url: '', description: '' });
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
 
   const [chatMessages, setChatMessages] = useState(initialChat);
   const [chatInput, setChatInput] = useState('');
   const [chatFiles, setChatFiles] = useState<File[]>([]);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('[aria-label="Opções do vídeo"]') && !target.closest('.absolute')) {
+        setDeleteConfirm(null);
+      }
+    };
+
+    if (deleteConfirm) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [deleteConfirm]);
 
   const handleAddVideo = (event: React.FormEvent) => {
     event.preventDefault();
@@ -111,6 +133,7 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({ onBack, onAccessSi
 
     setVideos((prev) => [
       {
+        id: Date.now().toString(),
         title: newVideo.title,
         url: newVideo.url,
         description: newVideo.description || 'Vídeo adicionado pela coordenação.',
@@ -121,6 +144,16 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({ onBack, onAccessSi
     ]);
 
     setNewVideo({ title: '', url: '', description: '' });
+  };
+
+  const handleDeleteVideo = (videoId: string) => {
+    // Remove video from state (soft delete - just hiding from UI)
+    setVideos((prev) => prev.filter(v => v.id !== videoId));
+    setDeleteConfirm(null);
+    
+    // Show success feedback
+    setDeleteSuccess(true);
+    setTimeout(() => setDeleteSuccess(false), 3000);
   };
 
   const handleMaterialUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -223,9 +256,15 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({ onBack, onAccessSi
                 <PlayCircle className="w-10 h-10 text-mediaPink" />
               </div>
 
+              {deleteSuccess && (
+                <div className="mb-6 rounded-2xl border border-green-500/30 bg-green-900/20 px-4 py-3 text-sm text-green-200">
+                  ✅ Vídeo removido da sala virtual.
+                </div>
+              )}
+
               <div className="space-y-6">
-                {videos.map((video, idx) => (
-                  <div key={`${video.title}-${idx}`} className="flex flex-col md:flex-row gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                {videos.map((video) => (
+                  <div key={video.id} className="flex flex-col md:flex-row gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 relative">
                     <div className="w-full md:w-1/3 bg-black/40 rounded-xl overflow-hidden">
                       <iframe
                         src={video.url}
@@ -238,7 +277,29 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({ onBack, onAccessSi
                     <div className="flex-1">
                       <div className="flex items-center justify-between flex-wrap gap-2">
                         <h3 className="text-white font-semibold text-lg">{video.title}</h3>
-                        <span className="text-xs text-slate-400 bg-white/5 px-3 py-1 rounded-full border border-white/10">{video.duration}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-slate-400 bg-white/5 px-3 py-1 rounded-full border border-white/10">{video.duration}</span>
+                          <div className="relative">
+                            <button
+                              onClick={() => setDeleteConfirm(deleteConfirm === video.id ? null : video.id)}
+                              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                              aria-label="Opções do vídeo"
+                            >
+                              <MoreVertical className="w-4 h-4 text-slate-400" />
+                            </button>
+                            {deleteConfirm === video.id && (
+                              <div className="absolute right-0 top-full mt-1 bg-slate-800 border border-white/10 rounded-xl shadow-xl z-10 min-w-[200px]">
+                                <button
+                                  onClick={() => handleDeleteVideo(video.id)}
+                                  className="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-300 hover:bg-red-900/20 rounded-xl transition-colors"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                  Excluir vídeo
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
                       <p className="text-slate-300 text-sm mt-2 mb-4">{video.description}</p>
                       <div className="flex flex-wrap gap-2 text-xs">
