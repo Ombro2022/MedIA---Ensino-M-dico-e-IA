@@ -4,6 +4,18 @@ import { Module, PricingTier, FaqItem, TransversalActivity } from './types';
 export const GRADIENT_TEXT_CLASS = "bg-clip-text text-transparent bg-gradient-to-r from-mediaBlue via-mediaPurple to-mediaPink";
 export const GRADIENT_BORDER_CLASS = "bg-gradient-to-r from-mediaBlue via-mediaPurple to-mediaPink";
 
+export const SVG_THEME_PALETTE = {
+  deepNavy: '#19213D',
+  stormGrey: '#6D758F',
+  primaryBlue: '#2370FF',
+  skyBlue: '#4E8CFF',
+  glowBlue: '#8DC1FF',
+  accentBlue: '#3893FF',
+  neonAqua: '#04ADFE',
+  deepAzure: '#0066FF',
+  mist: '#E3EFFF'
+};
+
 export const COURSE_MODULES: Module[] = [
   {
     id: 1,
@@ -111,6 +123,6 @@ export const SOCIAL_STORAGE_KEYS = {
   assets: 'mediaSocialAssets'
 };
 
-export const SOCIAL_API_BASE_URL = import.meta.env.VITE_SOCIAL_API_URL || 'http://localhost:4000';
+export const SOCIAL_API_BASE_URL = import.meta.env.VITE_SOCIAL_API_URL;
 export const SOCIAL_AUTH_STORAGE_KEY = 'mediaSocialAuthToken';
 
