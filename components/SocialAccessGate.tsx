@@ -16,7 +16,14 @@ export const SocialAccessGate: React.FC<SocialAccessGateProps> = ({ onSuccess, o
 
   const apiBase = SOCIAL_API_BASE_URL.replace(/\/$/, '');
 
+  // Early check if API is configured
   useEffect(() => {
+    if (!SOCIAL_API_BASE_URL) {
+      setError('Backend do Social Studio não configurado. Configure VITE_SOCIAL_API_URL.');
+      setCheckingSession(false);
+      return;
+    }
+
     const existingToken = localStorage.getItem(SOCIAL_AUTH_STORAGE_KEY);
     if (!existingToken) {
       setCheckingSession(false);
@@ -48,6 +55,13 @@ export const SocialAccessGate: React.FC<SocialAccessGateProps> = ({ onSuccess, o
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    
+    // Double-check API is configured before attempting login
+    if (!SOCIAL_API_BASE_URL) {
+      setError('Backend do Social Studio não está configurado');
+      return;
+    }
+    
     setError('');
     setLoading(true);
 

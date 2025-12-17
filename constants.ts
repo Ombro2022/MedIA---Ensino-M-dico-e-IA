@@ -111,6 +111,13 @@ export const SOCIAL_STORAGE_KEYS = {
   assets: 'mediaSocialAssets'
 };
 
-export const SOCIAL_API_BASE_URL = import.meta.env.VITE_SOCIAL_API_URL || 'http://localhost:4000';
+// API URL must be explicitly set in production - no localhost fallback
+export const SOCIAL_API_BASE_URL = import.meta.env.VITE_SOCIAL_API_URL || '';
 export const SOCIAL_AUTH_STORAGE_KEY = 'mediaSocialAuthToken';
+
+// Check if Social Studio backend is available
+export const IS_SOCIAL_STUDIO_AVAILABLE = 
+  !!SOCIAL_API_BASE_URL && 
+  !SOCIAL_API_BASE_URL.includes('localhost') &&
+  SOCIAL_API_BASE_URL.startsWith('http');
 
