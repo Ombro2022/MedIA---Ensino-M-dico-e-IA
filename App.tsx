@@ -13,10 +13,11 @@ import { SocialStudio } from './components/SocialStudio';
 import { Footer } from './components/Footer';
 import { GeminiChat } from './components/GeminiChat';
 import { Registration } from './components/Registration';
+import { SimulatorMVP } from './simulator/SimulatorMVP';
 import { SelectedPlan } from './types';
-import { SOCIAL_AUTH_STORAGE_KEY } from './constants';
+import { SOCIAL_AUTH_STORAGE_KEY, IS_SOCIAL_STUDIO_AVAILABLE } from './constants';
 
-type ViewState = 'home' | 'register' | 'portal' | 'social-gate' | 'social-studio';
+type ViewState = 'home' | 'register' | 'portal' | 'social-gate' | 'social-studio' | 'simulator';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('home');
@@ -28,7 +29,15 @@ function App() {
   useEffect(() => {
     const syncFromHash = () => {
       if (window.location.hash === '#/social') {
-        setCurrentView((prev) => (prev === 'social-studio' ? prev : 'social-gate'));
+        // Only allow social access if backend is configured
+        if (IS_SOCIAL_STUDIO_AVAILABLE) {
+          setCurrentView((prev) => (prev === 'social-studio' ? prev : 'social-gate'));
+        } else {
+          console.warn('Social Studio backend not configured');
+          window.location.hash = '';
+        }
+      } else if (window.location.hash === '#/simulator/sepsis') {
+        setCurrentView('simulator');
       }
     };
 
@@ -46,7 +55,7 @@ function App() {
   const handleBackToHome = () => {
     setCurrentView('home');
     setSelectedPlan(null);
-    if (window.location.hash === '#/social') {
+    if (window.location.hash === '#/social' || window.location.hash === '#/simulator/sepsis') {
       window.location.hash = '';
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -57,7 +66,19 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleAccessSimulator = () => {
+    window.location.hash = '#/simulator/sepsis';
+    setCurrentView('simulator');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleAccessSocial = () => {
+    // Only allow access if backend is configured
+    if (!IS_SOCIAL_STUDIO_AVAILABLE) {
+      console.warn('Social Studio backend not configured in production');
+      return;
+    }
+    
     if (window.location.hash !== '#/social') {
       window.location.hash = '#/social';
     }
@@ -109,14 +130,18 @@ function App() {
         )}
 
         {currentView === 'portal' && (
-          <StudentPortal onBack={handleBackToHome} />
+          <StudentPortal onBack={handleBackToHome} onAccessSimulator={handleAccessSimulator} />
         )}
 
-        {currentView === 'social-gate' && (
+        {currentView === 'simulator' && (
+          <SimulatorMVP onBack={handleBackToHome} />
+        )}
+
+        {IS_SOCIAL_STUDIO_AVAILABLE && currentView === 'social-gate' && (
           <SocialAccessGate onSuccess={handleSocialAuthorized} onCancel={handleBackToHome} />
         )}
 
-        {currentView === 'social-studio' && (
+        {IS_SOCIAL_STUDIO_AVAILABLE && currentView === 'social-studio' && (
           <SocialStudio onExit={handleSocialLogout} />
         )}
       </main>
