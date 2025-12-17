@@ -15,6 +15,7 @@ import {
 
 interface StudentPortalProps {
   onBack: () => void;
+  onAccessSimulator?: () => void;
 }
 
 interface PortalVideo {
@@ -95,7 +96,7 @@ const initialChat: ChatMessage[] = [
   }
 ];
 
-export const StudentPortal: React.FC<StudentPortalProps> = ({ onBack }) => {
+export const StudentPortal: React.FC<StudentPortalProps> = ({ onBack, onAccessSimulator }) => {
   const [videos, setVideos] = useState(initialVideos);
   const [materials, setMaterials] = useState(initialMaterials);
   const [newVideo, setNewVideo] = useState({ title: '', url: '', description: '' });
@@ -199,6 +200,15 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({ onBack }) => {
                 <p className="text-2xl font-bold text-white">Liberado</p>
                 <p className="text-xs text-slate-400">Última verificação automática há 5 min</p>
               </div>
+              {onAccessSimulator && (
+                <button
+                  onClick={onAccessSimulator}
+                  className="bg-gradient-to-r from-mediaPink to-red-500 text-white font-bold py-4 px-6 rounded-2xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                >
+                  <PlayCircle className="w-5 h-5" />
+                  Simulador Clínico
+                </button>
+              )}
             </div>
           </div>
 
