@@ -101,8 +101,26 @@ const initialChat: ChatMessage[] = [
   }
 ];
 
+const STORAGE_KEY = 'mediaia:student-portal-videos';
+
 export const StudentPortal: React.FC<StudentPortalProps> = ({ onBack, onAccessSimulator }) => {
-  const [videos, setVideos] = useState(initialVideos);
+  // Load videos from localStorage on initialization
+  const [videos, setVideos] = useState<PortalVideo[]>(() => {
+    try {
+      const storedVideos = localStorage.getItem(STORAGE_KEY);
+      if (storedVideos) {
+        const parsed = JSON.parse(storedVideos);
+        // Validate that it's an array
+        if (Array.isArray(parsed)) {
+          return parsed;
+        }
+      }
+    } catch (error) {
+      console.warn('Failed to load videos from localStorage, using defaults:', error);
+    }
+    return initialVideos;
+  });
+
   const [materials, setMaterials] = useState(initialMaterials);
   const [newVideo, setNewVideo] = useState({ title: '', url: '', description: '' });
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
@@ -111,6 +129,15 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({ onBack, onAccessSi
   const [chatMessages, setChatMessages] = useState(initialChat);
   const [chatInput, setChatInput] = useState('');
   const [chatFiles, setChatFiles] = useState<File[]>([]);
+
+  // Persist videos to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+    } catch (error) {
+      console.error('Failed to save videos to localStorage:', error);
+    }
+  }, [videos]);
 
   // Close menu when clicking outside
   useEffect(() => {
