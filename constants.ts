@@ -123,6 +123,11 @@ export const SOCIAL_STORAGE_KEYS = {
   assets: 'mediaSocialAssets'
 };
 
-export const SOCIAL_API_BASE_URL = import.meta.env.VITE_SOCIAL_API_URL;
+// Define a URL base da API com base no ambiente (produção vs. desenvolvimento)
+const isProduction = import.meta.env.PROD;
+export const SOCIAL_API_BASE_URL = isProduction
+  ? 'https://media-ensino-medico-e-ia.onrender.com'
+  : 'http://localhost:4000';
+
 export const SOCIAL_AUTH_STORAGE_KEY = 'mediaSocialAuthToken';
 
