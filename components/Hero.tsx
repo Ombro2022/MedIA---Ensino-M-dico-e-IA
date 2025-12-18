@@ -1,9 +1,8 @@
 import React from 'react';
 import { ArrowRight, Brain, Lightbulb, Sparkles } from 'lucide-react';
-import { GRADIENT_TEXT_CLASS } from '../constants';
+import { GRADIENT_TEXT_CLASS, MODULE_START_LABEL } from '../constants';
 
 export const Hero: React.FC = () => {
-  const MODULE_START_LABEL = 'Início previsto do Módulo 1: 01/02/2026';
   const scrollToPricing = () => {
     const el = document.getElementById('pricing');
     el?.scrollIntoView({ behavior: 'smooth' });
@@ -25,7 +24,7 @@ export const Hero: React.FC = () => {
 
         <div
           className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 bg-white/70 mb-8 backdrop-blur-sm shadow-sm text-sm font-semibold text-slate-700"
-          aria-label="Informação institucional: Início previsto do Módulo 1 em 01/02/2026"
+          aria-label={`Informação institucional: ${MODULE_START_LABEL}`}
         >
           <span aria-hidden="true">📅</span>
           <span>{MODULE_START_LABEL}</span>
