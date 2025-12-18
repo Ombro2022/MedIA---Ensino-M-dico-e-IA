@@ -24,7 +24,7 @@ export const Hero: React.FC = () => {
 
         <div
           className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 bg-white/70 mb-8 backdrop-blur-sm shadow-sm text-sm font-semibold text-slate-700"
-          aria-label="Data de início do Módulo 1"
+          aria-label="Informações sobre data de início"
         >
           <span aria-hidden="true">📅</span>
           <span>{MODULE_START_LABEL}</span>
