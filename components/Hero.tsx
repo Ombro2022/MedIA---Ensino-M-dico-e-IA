@@ -3,6 +3,7 @@ import { ArrowRight, Brain, Lightbulb, Sparkles } from 'lucide-react';
 import { GRADIENT_TEXT_CLASS } from '../constants';
 
 export const Hero: React.FC = () => {
+  const MODULE_START_LABEL = 'Início previsto do Módulo 1: 01/02/2026';
   const scrollToPricing = () => {
     const el = document.getElementById('pricing');
     el?.scrollIntoView({ behavior: 'smooth' });
@@ -22,9 +23,12 @@ export const Hero: React.FC = () => {
           <span className="text-sm font-medium text-slate-600">80h de Imersão: Presencial + Online 4K</span>
         </div>
 
-        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 bg-white/70 mb-8 backdrop-blur-sm shadow-sm text-sm font-semibold text-slate-700">
+        <div
+          className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 bg-white/70 mb-8 backdrop-blur-sm shadow-sm text-sm font-semibold text-slate-700"
+          aria-label={MODULE_START_LABEL}
+        >
           <span aria-hidden="true">📅</span>
-          <span>Início previsto do Módulo 1: 01/02/2026</span>
+          <span>{MODULE_START_LABEL}</span>
         </div>
 
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight leading-tight text-slate-900">
