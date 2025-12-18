@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Brain, Lightbulb, Sparkles } from 'lucide-react';
-import { GRADIENT_TEXT_CLASS } from '../constants';
+import { GRADIENT_TEXT_CLASS, MODULE_START_LABEL } from '../constants';
 
 export const Hero: React.FC = () => {
   const scrollToPricing = () => {
@@ -17,9 +17,14 @@ export const Hero: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-6 text-center z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-mediaPurple/20 bg-white/50 mb-8 backdrop-blur-sm shadow-sm">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-mediaPurple/20 bg-white/50 mb-4 backdrop-blur-sm shadow-sm">
           <span className="w-2 h-2 rounded-full bg-mediaGreen animate-pulse"></span>
           <span className="text-sm font-medium text-slate-600">80h de Imersão: Presencial + Online 4K</span>
+        </div>
+
+        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 bg-white/70 mb-8 backdrop-blur-sm shadow-sm text-sm font-semibold text-slate-700">
+          <span aria-hidden="true">📅</span>
+          <span>{MODULE_START_LABEL}</span>
         </div>
 
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight leading-tight text-slate-900">
