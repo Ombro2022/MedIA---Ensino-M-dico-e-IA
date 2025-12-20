@@ -1,7 +1,7 @@
 import { Module, PricingTier, FaqItem, TransversalActivity } from './types';
 
 // Based on the user's color palette PDF
-export const GRADIENT_TEXT_CLASS = "bg-clip-text text-transparent bg-gradient-to-r from-mediaBlue via-mediaPurple to-mediaPink";
+export const GRADIENT_TEXT_CLASS = "bg-clip-text text-transparent bg-gradient-to-r from-[#005c94] to-[#39c]";
 export const GRADIENT_BORDER_CLASS = "bg-gradient-to-r from-mediaBlue via-mediaPurple to-mediaPink";
 
 export const COURSE_MODULES: Module[] = [

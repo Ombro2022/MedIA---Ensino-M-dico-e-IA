@@ -22,6 +22,12 @@ export const Hero: React.FC = () => {
           <span className="text-sm font-medium text-slate-600">80h de Imersão: Presencial + Online 4K</span>
         </div>
 
+        <div className="mb-8 text-center">
+            <p className="text-lg font-semibold text-white bg-mediaBlue rounded-full py-2 px-6 inline-block shadow-lg animate-bounce">
+                🚀 Nova turma com início previsto para a última semana de Janeiro de 2026! 🚀
+            </p>
+        </div>
+
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight leading-tight text-slate-900">
           Descubra o aprendizado da Medicina <br />
           <span className={GRADIENT_TEXT_CLASS}>com o auxílio da IA</span>
